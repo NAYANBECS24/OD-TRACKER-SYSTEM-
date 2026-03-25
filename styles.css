@@ -25,7 +25,7 @@ body {
 }
 
 .container {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 1rem auto 2rem;
   padding: 0 1rem;
   display: grid;
@@ -38,6 +38,25 @@ body {
   border-radius: 12px;
   padding: 1rem;
   box-shadow: 0 8px 16px rgb(0 0 0 / 6%);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: .75rem;
+}
+
+.stats > div {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: .75rem;
+  text-align: center;
+}
+
+.stats strong {
+  display: block;
+  font-size: 1.35rem;
+  color: var(--primary);
 }
 
 .grid {
@@ -53,11 +72,9 @@ label {
   font-size: .9rem;
 }
 
-input, textarea, button {
-  font: inherit;
-}
+input, textarea, select, button { font: inherit; }
 
-input, textarea {
+input, textarea, select {
   padding: .55rem .65rem;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -80,14 +97,19 @@ button.muted { background: var(--muted); }
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: .75rem;
+  flex-wrap: wrap;
+}
+
+.actions {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
 }
 
 .table-wrapper { overflow-x: auto; }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
+table { width: 100%; border-collapse: collapse; }
 
 th, td {
   text-align: left;
@@ -95,6 +117,10 @@ th, td {
   padding: .6rem .45rem;
   vertical-align: top;
 }
+
+.reason { max-width: 230px; }
+.row-actions { white-space: nowrap; }
+.empty { text-align: center; color: var(--muted); font-style: italic; }
 
 .status {
   display: inline-block;
@@ -105,12 +131,9 @@ th, td {
   color: #2b6ef2;
 }
 
-.status.approved {
-  background: #dbf8e8;
-  color: #176f3b;
-}
+.status.approved { background: #dbf8e8; color: #176f3b; }
+.status.rejected { background: #fde2e2; color: #9c1f1f; }
 
-.status.rejected {
-  background: #fde2e2;
-  color: #9c1f1f;
+@media (max-width: 760px) {
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
