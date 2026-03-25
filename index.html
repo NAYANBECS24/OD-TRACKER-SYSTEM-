@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OD Tracker WebApp</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>OD Tracker WebApp</h1>
+    <p>Student OD workflow for submission, screening, and approval tracking.</p>
+  </header>
+
+  <main class="container">
+    <section class="card stats" aria-label="Summary stats">
+      <div><strong id="totalCount">0</strong><span>Total</span></div>
+      <div><strong id="pendingCount">0</strong><span>Pending</span></div>
+      <div><strong id="approvedCount">0</strong><span>Approved</span></div>
+      <div><strong id="rejectedCount">0</strong><span>Rejected</span></div>
+    </section>
+
+    <section class="card">
+      <h2>Create OD Request</h2>
+      <form id="odForm">
+        <div class="grid">
+          <label>Student Name<input type="text" id="studentName" required /></label>
+          <label>Register Number<input type="text" id="registerNo" required /></label>
+          <label>Department<input type="text" id="department" required /></label>
+          <label>Event / Purpose<input type="text" id="eventName" required /></label>
+          <label>From Date<input type="date" id="fromDate" required /></label>
+          <label>To Date<input type="date" id="toDate" required /></label>
+        </div>
+        <label>Reason<textarea id="reason" rows="3" placeholder="Brief reason..." required></textarea></label>
+        <button type="submit">Submit Request</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="table-head">
+        <h2>OD Requests</h2>
+        <div class="actions">
+          <input id="searchInput" type="search" placeholder="Search name / reg / event" />
+          <select id="statusFilter" aria-label="Filter by status">
+            <option value="All">All</option>
+            <option value="Pending">Pending</option>
+            <option value="Approved">Approved</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+          <button id="downloadCsv" type="button" class="muted">Export CSV</button>
+          <button id="clearAll" type="button" class="danger">Clear All</button>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Reg No</th>
+              <th>Department</th>
+              <th>Event</th>
+              <th>Date Range</th>
+              <th>Reason</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="requestsTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <template id="rowTemplate">
+    <tr>
+      <td data-name></td>
+      <td data-reg></td>
+      <td data-dept></td>
+      <td data-event></td>
+      <td data-range></td>
+      <td data-reason class="reason"></td>
+      <td><span data-status class="status"></span></td>
+      <td class="row-actions">
+        <button data-action="approve">Approve</button>
+        <button data-action="reject" class="danger">Reject</button>
+        <button data-action="delete" class="muted">Delete</button>
+      </td>
+    </tr>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
