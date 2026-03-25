@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OD Tracker WebApp</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>OD Tracker WebApp</h1>
+    <p>Track On-Duty (OD) requests for students and faculty.</p>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <h2>Create OD Request</h2>
+      <form id="odForm">
+        <div class="grid">
+          <label>
+            Student Name
+            <input type="text" id="studentName" required />
+          </label>
+          <label>
+            Register Number
+            <input type="text" id="registerNo" required />
+          </label>
+          <label>
+            Department
+            <input type="text" id="department" required />
+          </label>
+          <label>
+            Event / Purpose
+            <input type="text" id="eventName" required />
+          </label>
+          <label>
+            From Date
+            <input type="date" id="fromDate" required />
+          </label>
+          <label>
+            To Date
+            <input type="date" id="toDate" required />
+          </label>
+        </div>
+        <label>
+          Reason
+          <textarea id="reason" rows="3" placeholder="Brief reason..." required></textarea>
+        </label>
+        <button type="submit">Submit Request</button>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="table-head">
+        <h2>OD Requests</h2>
+        <button id="clearAll" class="danger" type="button">Clear All</button>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Reg No</th>
+              <th>Department</th>
+              <th>Event</th>
+              <th>Date Range</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="requestsTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <template id="rowTemplate">
+    <tr>
+      <td data-name></td>
+      <td data-reg></td>
+      <td data-dept></td>
+      <td data-event></td>
+      <td data-range></td>
+      <td><span data-status class="status"></span></td>
+      <td>
+        <button data-action="approve">Approve</button>
+        <button data-action="reject" class="danger">Reject</button>
+        <button data-action="delete" class="muted">Delete</button>
+      </td>
+    </tr>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
